@@ -2,6 +2,11 @@
 
 All notable changes to the "TokenTrim" extension will be documented in this file.
 
+## [1.0.1] - 2026-01-06
+
+### Changed
+- ⚡ Optimized activation events (`onStartupFinished`) to improve VS Code startup performance.
+
 ## [1.0.0] - 2026-01-06
 
 ### Added

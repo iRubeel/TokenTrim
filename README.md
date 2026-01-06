@@ -2,7 +2,7 @@
 
 > **Trim tokens. Cut costs. Code smarter.**
 
-Stop overpaying for LLM APIs. TokenTrim optimizes your prompts locally—right in VS Code, fully private, fully free.
+Stop overpaying for LLM APIs. TokenTrim optimizes your prompts locally right in VS Code, fully private, fully free.
 
 ## ✨ Features
 
@@ -59,12 +59,6 @@ TokenTrim runs **100% locally**. Your prompts never leave your machine. No telem
 ## 📦 Requirements
 
 - VS Code 1.85.0 or higher
-
-## 🗺️ Roadmap
-
-**v1.0** (Current) - Core token counting and rule-based optimization  
-**v2.0** (Coming Soon) - Multi-model support (Claude, Gemini)  
-**v3.0** (Planned) - ML-based compression with LLMLingua
 
 ## 📄 License
 

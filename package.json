@@ -2,9 +2,9 @@
     "name": "tokentrim",
     "displayName": "TokenTrim",
     "description": "Trim tokens. Cut costs. Code smarter. Local prompt optimization for LLM APIs.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "icon": "resources/icon.png",
-    "publisher": "iRubeel",
+    "publisher": "Rubeel",
     "repository": {
         "type": "git",
         "url": "https://github.com/iRubeel/tokentrim"
@@ -17,7 +17,7 @@
         "Machine Learning"
     ],
     "activationEvents": [
-        "*"
+        "onStartupFinished"
     ],
     "main": "./out/extension.js",
     "contributes": {
