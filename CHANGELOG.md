@@ -2,6 +2,11 @@
 
 All notable changes to the "TokenTrim" extension will be documented in this file.
 
+## [1.0.2] - 2026-01-06
+
+### Fixed
+- 🐛 Fixed "Infinite Loading" issue by replacing `tiktoken` (WASM) with `js-tiktoken` (Pure JS) for better VS Code compatibility.
+
 ## [1.0.1] - 2026-01-06
 
 ### Changed

@@ -2,7 +2,7 @@
     "name": "tokentrim",
     "displayName": "TokenTrim",
     "description": "Trim tokens. Cut costs. Code smarter. Local prompt optimization for LLM APIs.",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "icon": "resources/icon.png",
     "publisher": "Rubeel",
     "repository": {
@@ -71,7 +71,7 @@
         "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\""
     },
     "dependencies": {
-        "tiktoken": "^1.0.10",
+        "js-tiktoken": "^1.0.21",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
