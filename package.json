@@ -1,0 +1,90 @@
+{
+    "name": "tokentrim",
+    "displayName": "TokenTrim",
+    "description": "Trim tokens. Cut costs. Code smarter. Local prompt optimization for LLM APIs.",
+    "version": "1.0.0",
+    "icon": "resources/icon.png",
+    "publisher": "iRubeel",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/iRubeel/tokentrim"
+    },
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Other",
+        "Machine Learning"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "tokentrim.optimizeSelection",
+                "title": "TokenTrim: Optimize Selected Text"
+            },
+            {
+                "command": "tokentrim.showSidebar",
+                "title": "TokenTrim: Show Sidebar"
+            },
+            {
+                "command": "tokentrim.selectModel",
+                "title": "TokenTrim: Select Model"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "tokentrim-sidebar",
+                    "title": "TokenTrim",
+                    "icon": "resources/icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "tokentrim-sidebar": [
+                {
+                    "type": "webview",
+                    "id": "tokentrim.sidebar",
+                    "name": "Optimizer",
+                    "contextualTitle": "TokenTrim"
+                }
+            ]
+        },
+        "keybindings": [
+            {
+                "command": "tokentrim.optimizeSelection",
+                "key": "ctrl+shift+o",
+                "mac": "cmd+shift+o",
+                "when": "editorHasSelection"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run build",
+        "build": "node esbuild.js --production",
+        "dev": "node esbuild.js --watch",
+        "lint": "eslint src --ext ts,tsx",
+        "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\""
+    },
+    "dependencies": {
+        "tiktoken": "^1.0.10",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.0",
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "@types/vscode": "^1.85.0",
+        "@typescript-eslint/eslint-plugin": "^6.13.0",
+        "@typescript-eslint/parser": "^6.13.0",
+        "esbuild": "^0.19.0",
+        "eslint": "^8.54.0",
+        "prettier": "^3.1.0",
+        "typescript": "^5.3.0"
+    }
+}
