@@ -3,7 +3,10 @@
 .github/**
 src/**
 node_modules/**
-*.md
+# *.md (Keep README and CHANGELOG)
+!README.md
+!CHANGELOG.md
+!LICENSE
 *.vsix
 .eslintrc.json
 .prettierrc

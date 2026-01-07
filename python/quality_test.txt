@@ -1,0 +1,5 @@
+This is a comprehensive guide to using large language models effectively. When working with APIs like OpenAI's GPT-4, Anthropic's Claude, or Google's Gemini, token costs can add up quickly. By optimizing your prompts, you can reduce costs by 50-80% while maintaining the same quality of responses. The key is to remove unnecessary words while preserving meaning. This extension helps you do that automatically using advanced ML compression techniques.
+
+For example, if you have a long prompt that explains a complex task, the optimizer should keep the essential instructions while removing filler words. The compressed version should still be understandable and convey the same intent. If the compression is too aggressive, it might remove important context or make the prompt unclear.
+
+Let's test with a specific instruction: "Please analyze the following code and identify any potential security vulnerabilities, performance bottlenecks, or code quality issues. Provide detailed recommendations for improvements along with code examples showing the suggested changes."

@@ -1,0 +1,2 @@
+{"rate": 0.5}
+This is a test prompt to verify LLMLingua compression works correctly. The extension should compress this text while preserving semantic meaning.

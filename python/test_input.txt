@@ -1,0 +1,2 @@
+{"rate": 0.5, "model": "microsoft/llmlingua-2-xlm-roberta-large-meetingbank"}
+This is a comprehensive test prompt that we want to compress using LLMLingua. The compression should preserve the semantic meaning while reducing the token count significantly. This helps reduce API costs when working with large language models like GPT-4, Claude, or Gemini.

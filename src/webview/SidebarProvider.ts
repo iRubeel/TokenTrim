@@ -26,6 +26,9 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
                 case 'optimize':
                     await vscode.commands.executeCommand('tokentrim.optimizeSelection');
                     break;
+                case 'optimizeML':
+                    await vscode.commands.executeCommand('tokentrim.optimizeWithML', data.compressionRate);
+                    break;
                 case 'selectModel':
                     await vscode.commands.executeCommand('tokentrim.selectModel');
                     break;

@@ -10,6 +10,7 @@ interface SelectionData {
     tokens: number;
     cost: number;
     model: string;
+    mlAvailable?: boolean;  // NEW: Is ML optimizer available?
     optimized?: {
         text: string;
         tokens: number;
@@ -23,6 +24,8 @@ interface SelectionData {
 export const App: React.FC = () => {
     const [selection, setSelection] = React.useState<SelectionData | null>(null);
     const [hasOptimized, setHasOptimized] = React.useState(false);
+    const [optimizationMode, setOptimizationMode] = React.useState<'rule' | 'ml'>('rule');
+    const [compressionRate, setCompressionRate] = React.useState(0.5); // 0.3 = aggressive, 0.7 = conservative
 
     // Initialize VS Code API once
     const vscode = React.useMemo(() => {
@@ -48,7 +51,10 @@ export const App: React.FC = () => {
     }, []);
 
     const postMessage = (type: string, data?: any) => {
-        vscode.postMessage({ type, ...data });
+        vscode.postMessage({
+            type,
+            ...data,
+        });
     };
 
     const handleOptimize = () => {
@@ -107,9 +113,60 @@ export const App: React.FC = () => {
             </div>
 
             {!hasOptimized && (
-                <button className="btn-primary" onClick={handleOptimize}>
-                    Optimize Prompt
-                </button>
+                <>
+                    {selection.mlAvailable && (
+                        <div className="mode-selector">
+                            <button
+                                className={optimizationMode === 'rule' ? 'mode-btn active' : 'mode-btn'}
+                                onClick={() => setOptimizationMode('rule')}
+                            >
+                                ✂️ Quick Compress
+                            </button>
+                            <button
+                                className={optimizationMode === 'ml' ? 'mode-btn active' : 'mode-btn'}
+                                onClick={() => setOptimizationMode('ml')}
+                            >
+                                ⚡ ML Optimize
+                            </button>
+                        </div>
+                    )}
+
+                    {optimizationMode === 'ml' && selection.mlAvailable && (
+                        <div className="compression-slider">
+                            <label>
+                                <span>Compression Rate: {Math.round((1 - compressionRate) * 100)}%</span>
+                                <span className="slider-hint">
+                                    {compressionRate <= 0.4 ? 'Aggressive' : compressionRate >= 0.6 ? 'Conservative' : 'Balanced'}
+                                </span>
+                            </label>
+                            <input
+                                type="range"
+                                min="0.3"
+                                max="0.7"
+                                step="0.05"
+                                value={compressionRate}
+                                onChange={(e) => setCompressionRate(parseFloat(e.target.value))}
+                            />
+                            <div className="slider-labels">
+                                <span>More Compression</span>
+                                <span>Less Compression</span>
+                            </div>
+                        </div>
+                    )}
+
+                    <button
+                        className="btn-primary"
+                        onClick={() => {
+                            if (optimizationMode === 'ml' && selection.mlAvailable) {
+                                postMessage('optimizeML', { compressionRate });
+                            } else {
+                                postMessage('optimize');
+                            }
+                        }}
+                    >
+                        {optimizationMode === 'ml' ? 'Optimize with AI' : 'Optimize Prompt'}
+                    </button>
+                </>
             )}
 
             {hasOptimized && selection.optimized && (

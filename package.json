@@ -1,8 +1,8 @@
 {
     "name": "tokentrim",
     "displayName": "TokenTrim",
-    "description": "Trim tokens. Cut costs. Code smarter. Local prompt optimization for LLM APIs.",
-    "version": "1.0.2",
+    "description": "Local token counting, cost estimation, and ML-powered prompt optimization for OpenAI, Claude, and Gemini models",
+    "version": "2.0.0",
     "icon": "resources/icon.png",
     "publisher": "Rubeel",
     "repository": {
@@ -15,6 +15,23 @@
     "categories": [
         "Other",
         "Machine Learning"
+    ],
+    "keywords": [
+        "llm",
+        "token",
+        "cost",
+        "optimize",
+        "openai",
+        "claude",
+        "gemini",
+        "prompt",
+        "compression",
+        "llmlingua",
+        "ml",
+        "ai",
+        "gpt",
+        "anthropic",
+        "google"
     ],
     "activationEvents": [
         "onStartupFinished"
@@ -33,6 +50,10 @@
             {
                 "command": "tokentrim.selectModel",
                 "title": "TokenTrim: Select Model"
+            },
+            {
+                "command": "tokentrim.optimizeWithML",
+                "title": "TokenTrim: Optimize with ML (LLMLingua)"
             }
         ],
         "viewsContainers": {
@@ -59,6 +80,12 @@
                 "command": "tokentrim.optimizeSelection",
                 "key": "ctrl+shift+o",
                 "mac": "cmd+shift+o",
+                "when": "editorHasSelection"
+            },
+            {
+                "command": "tokentrim.optimizeWithML",
+                "key": "ctrl+shift+m",
+                "mac": "cmd+shift+m",
                 "when": "editorHasSelection"
             }
         ]
