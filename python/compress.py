@@ -8,6 +8,19 @@ import sys
 import json
 import traceback
 from llmlingua import PromptCompressor
+import llmlingua
+
+# Verify llmlingua version compatibility
+MIN_LLMLINGUA_VERSION = "0.2.1"
+try:
+    from packaging import version
+    if version.parse(llmlingua.__version__) < version.parse(MIN_LLMLINGUA_VERSION):
+        print(f"ERROR: llmlingua {MIN_LLMLINGUA_VERSION}+ required for LLMLingua-2 support. Current version: {llmlingua.__version__}", file=sys.stderr)
+        print(f"Please upgrade: pip install 'llmlingua>={MIN_LLMLINGUA_VERSION}'", file=sys.stderr)
+        sys.exit(1)
+except ImportError:
+    # packaging not available, skip version check
+    pass
 
 def clean_text(text):
     """Clean text while preserving content"""
@@ -76,11 +89,21 @@ def main():
         print(f"DEBUG: Prompt preview: {prompt[:100]}...", file=sys.stderr)
         
         # Initialize compressor with LLMLingua 2
-        compressor = PromptCompressor(
-            model_name="microsoft/llmlingua-2-xlm-roberta-large-meetingbank",
-            use_llmlingua2=True,
-            device_map='cpu'
-        )
+        try:
+            compressor = PromptCompressor(
+                model_name="microsoft/llmlingua-2-xlm-roberta-large-meetingbank",
+                use_llmlingua2=True,
+                device_map='cpu'
+            )
+        except TypeError as e:
+            if 'use_llmlingua2' in str(e):
+                raise ValueError(
+                    f"Incompatible llmlingua version detected. "
+                    f"The 'use_llmlingua2' parameter requires llmlingua >= 0.2.1. "
+                    f"Current version: {llmlingua.__version__}. "
+                    f"Please upgrade: pip install 'llmlingua>=0.2.1'"
+                ) from e
+            raise
         
         # Compress prompt - LLMLingua 2 expects a single string
         result = compressor.compress_prompt(

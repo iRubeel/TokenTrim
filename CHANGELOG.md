@@ -2,6 +2,16 @@
 
 All notable changes to the "TokenTrim" extension will be documented in this file.
 
+## [2.0.1] - 2026-01-08
+
+### Fixed
+- 🐛 **CRITICAL**: Fixed LLMLingua dependency version incompatibility causing 100% ML compression failure
+  - Updated `llmlingua` from `==0.2.0` to `>=0.2.1,<0.3.0` to support `use_llmlingua2` parameter
+  - Added version validation to fail fast with clear error messages
+  - Added graceful error handling for version incompatibility
+  - Fixed OpenSSL warning on macOS by constraining `urllib3<2.0.0`
+- 🧪 Added automated compatibility test suite (`test_llmlingua.py`)
+
 ## [2.0.0] - 2026-01-07
 
 ### Added
